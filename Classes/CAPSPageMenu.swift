@@ -21,9 +21,9 @@ import UIKit
 
 @objc public protocol CAPSPageMenuDelegate {
     // MARK: - Delegate functions
-
     @objc optional func willMoveToPage(_ controller: UIViewController, index: Int)
     @objc optional func didMoveToPage(_ controller: UIViewController, index: Int)
+    @objc optional func didUpdateScrollOffset(_ index: Int, contentOffSet: CGPoint)
 }
 
 open class CAPSPageMenu: UIViewController {
