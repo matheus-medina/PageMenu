@@ -60,6 +60,10 @@ extension CAPSPageMenu {
                 configuration.centerMenuItems = value
             case let .hideTopMenuBar(value):
                 configuration.hideTopMenuBar = value
+            case let .startIndex(value):
+                configuration.startIndex = value
+            case let .disableScroll(value):
+                configuration.disableScroll = value
             }
         }
         
@@ -77,6 +81,7 @@ extension CAPSPageMenu {
         controllerScrollView.translatesAutoresizingMaskIntoConstraints = false
         controllerScrollView.alwaysBounceHorizontal = configuration.enableHorizontalBounce
         controllerScrollView.bounces = configuration.enableHorizontalBounce
+        controllerScrollView.isScrollEnabled = !configuration.disableScroll
         
         controllerScrollView.frame = CGRect(x: 0.0, y: configuration.menuHeight, width: self.view.frame.width, height: self.view.frame.height - configuration.menuHeight)
         
@@ -216,6 +221,8 @@ extension CAPSPageMenu {
             
             index += 1
         }
+        
+        self.controllerScrollView.setContentOffset(CGPoint(x: CGFloat(configuration.startIndex) * self.view.frame.width, y: 0), animated: false)
         
         // Set new content size for menu scroll view if needed
         if configuration.menuItemWidthBasedOnTitleTextWidth {
