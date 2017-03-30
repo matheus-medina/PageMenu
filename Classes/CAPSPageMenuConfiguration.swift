@@ -21,6 +21,7 @@ public class CAPSPageMenuConfiguration {
     open var viewBackgroundColor : UIColor = UIColor.white
     open var bottomMenuHairlineColor : UIColor = UIColor.white
     open var menuItemSeparatorColor : UIColor = UIColor.lightGray
+    open var startIndex: Int = 0
     
     open var menuItemFont : UIFont = UIFont.systemFont(ofSize: 15.0)
     open var menuItemSeparatorPercentageHeight : CGFloat = 0.2
@@ -34,6 +35,7 @@ public class CAPSPageMenuConfiguration {
     open var centerMenuItems : Bool = false
     open var enableHorizontalBounce : Bool = true
     open var hideTopMenuBar : Bool = false
+    open var disableScroll: Bool = false
     
     public init() {
         
