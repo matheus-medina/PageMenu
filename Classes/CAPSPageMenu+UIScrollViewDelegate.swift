@@ -11,6 +11,7 @@ import UIKit
 // MARK: - UIScrollViewDelegate
 extension CAPSPageMenu : UIScrollViewDelegate {
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.delegate?.didUpdateScrollOffset?(currentPageIndex, contentOffSet: scrollView.contentOffset)
         if !didLayoutSubviewsAfterRotation {
             if scrollView.isEqual(controllerScrollView) {
                 if scrollView.contentOffset.x >= 0.0 && scrollView.contentOffset.x <= (CGFloat(controllerArray.count - 1) * self.view.frame.width) {
