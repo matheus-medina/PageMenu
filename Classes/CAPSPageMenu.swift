@@ -352,10 +352,13 @@ extension CAPSPageMenu {
             // Move controller scroll view when tapping menu item
             let duration : Double = Double(configuration.scrollAnimationDurationOnMenuItemTap) / Double(1000)
             
-            UIView.animate(withDuration: duration, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0.0, options: [], animations: {
                 let xOffset : CGFloat = CGFloat(index) * self.controllerScrollView.frame.width
                 self.controllerScrollView.setContentOffset(CGPoint(x: xOffset, y: self.controllerScrollView.contentOffset.y), animated: false)
-            })
+            }) { (_) in
+                let currentController = self.controllerArray[self.currentPageIndex]
+                self.delegate?.didMoveToPage?(currentController, index: self.currentPageIndex)
+            }
         }
     }
 }
