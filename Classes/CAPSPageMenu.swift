@@ -24,6 +24,7 @@ import UIKit
     @objc optional func willMoveToPage(_ controller: UIViewController, index: Int)
     @objc optional func didMoveToPage(_ controller: UIViewController, index: Int)
     @objc optional func didUpdateScrollOffset(_ index: Int, contentOffSet: CGPoint)
+    @objc optional func willBeginDragging()
 }
 
 open class CAPSPageMenu: UIViewController {
