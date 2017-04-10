@@ -186,4 +186,8 @@ extension CAPSPageMenu : UIScrollViewDelegate {
         // Empty out pages in dictionary
         pagesAddedDictionary.removeAll(keepingCapacity: false)
     }
+    
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.delegate?.willBeginDragging?()
+    }
 }
