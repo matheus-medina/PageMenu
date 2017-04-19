@@ -46,4 +46,6 @@ public enum CAPSPageMenuOption {
     case hideTopMenuBar(Bool)
     case startIndex(Int)
     case disableScroll(Bool)
+    case indicatorCentered(Bool)
+    case indicatorRoundedBorder(Bool)
 }
