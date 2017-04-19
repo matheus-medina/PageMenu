@@ -64,6 +64,10 @@ extension CAPSPageMenu {
                 configuration.startIndex = value
             case let .disableScroll(value):
                 configuration.disableScroll = value
+            case let .indicatorCentered(value):
+                configuration.indicatorCentered = value
+            case let .indicatorRoundedBorder(value):
+                configuration.indicatorRoundedBorder = value
             }
         }
         
@@ -239,19 +243,30 @@ extension CAPSPageMenu {
         // Configure selection indicator view
         var selectionIndicatorFrame : CGRect = CGRect()
         
+        var selectionIndicatorPosY : CGFloat = configuration.selectionIndicatorHeight
+        
+        if configuration.indicatorCentered {
+            selectionIndicatorPosY = configuration.selectionIndicatorHeight / 2
+        }
+        
+        
         if configuration.useMenuLikeSegmentedControl {
-            selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
+            selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - selectionIndicatorPosY, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
         } else if configuration.menuItemWidthBasedOnTitleTextWidth {
-            selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: menuItemWidths[0], height: configuration.selectionIndicatorHeight)
+            selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - selectionIndicatorPosY, width: menuItemWidths[0], height: configuration.selectionIndicatorHeight)
         } else {
             if configuration.centerMenuItems  {
-                selectionIndicatorFrame = CGRect(x: startingMenuMargin + configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
+                selectionIndicatorFrame = CGRect(x: startingMenuMargin + configuration.menuMargin, y: configuration.menuHeight - selectionIndicatorPosY, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
             } else {
-                selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
+                selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - selectionIndicatorPosY, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
             }
         }
         
         selectionIndicatorView = UIView(frame: selectionIndicatorFrame)
+        if configuration.indicatorRoundedBorder {
+            selectionIndicatorView.layer.cornerRadius = selectionIndicatorView.frame.height / 2
+            menuScrollView.clipsToBounds = false
+        }
         selectionIndicatorView.backgroundColor = configuration.selectionIndicatorColor
         menuScrollView.addSubview(selectionIndicatorView)
     }
