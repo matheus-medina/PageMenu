@@ -37,6 +37,9 @@ public class CAPSPageMenuConfiguration {
     open var hideTopMenuBar : Bool = false
     open var disableScroll: Bool = false
     
+    open var indicatorCentered: Bool = false
+    open var indicatorRoundedBorder: Bool = false
+    
     public init() {
         
     }
