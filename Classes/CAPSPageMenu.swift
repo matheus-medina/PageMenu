@@ -48,6 +48,11 @@ open class CAPSPageMenu: UIViewController {
     var selectionIndicatorView : UIView = UIView()
 
     public var currentPageIndex : Int = 0
+    public var isScrollEnabled : Bool! {
+        didSet {
+            controllerScrollView.isScrollEnabled = isScrollEnabled
+        }
+    }
     var lastPageIndex : Int = 0
 
     var currentOrientationIsPortrait : Bool = true
