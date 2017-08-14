@@ -362,6 +362,7 @@ extension CAPSPageMenu {
                 let xOffset : CGFloat = CGFloat(index) * self.controllerScrollView.frame.width
                 self.controllerScrollView.setContentOffset(CGPoint(x: xOffset, y: self.controllerScrollView.contentOffset.y), animated: false)
             }) { (_) in
+                self.removePageAtIndex(self.lastPageIndex)
                 let currentController = self.controllerArray[self.currentPageIndex]
                 self.delegate?.didMoveToPage?(currentController, index: self.currentPageIndex)
             }
