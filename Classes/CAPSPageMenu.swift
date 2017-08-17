@@ -319,6 +319,24 @@ extension CAPSPageMenu {
         self.view.layoutIfNeeded()
     }
     
+    internal func removeControllersAfterScroll() {
+        let currentController = self.controllerArray[self.currentPageIndex]
+        self.delegate?.didMoveToPage?(currentController, index: self.currentPageIndex)
+        
+        
+        // Remove all but current page after decelerating
+        for key in self.pagesAddedDictionary.keys {
+            if key != self.currentPageIndex {
+                self.removePageAtIndex(key)
+            }
+        }
+        
+        self.startingPageForScroll = self.currentPageIndex
+        self.didTapMenuItemToScroll = false
+        
+        // Empty out pages in dictionary
+        self.pagesAddedDictionary.removeAll(keepingCapacity: false)
+    }
     
     // MARK: - Move to page index
     
@@ -362,9 +380,7 @@ extension CAPSPageMenu {
                 let xOffset : CGFloat = CGFloat(index) * self.controllerScrollView.frame.width
                 self.controllerScrollView.setContentOffset(CGPoint(x: xOffset, y: self.controllerScrollView.contentOffset.y), animated: false)
             }) { (_) in
-                self.removePageAtIndex(self.lastPageIndex)
-                let currentController = self.controllerArray[self.currentPageIndex]
-                self.delegate?.didMoveToPage?(currentController, index: self.currentPageIndex)
+                self.removeControllersAfterScroll()
             }
         }
     }
