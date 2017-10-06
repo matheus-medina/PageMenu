@@ -354,7 +354,7 @@ extension CAPSPageMenu {
                 currentPageIndex = index
                 didTapMenuItemToScroll = true
                 
-                // Add pages in between current and tapped page if necessary
+                /*// Add pages in between current and tapped page if necessary
                 let smallerIndex : Int = lastPageIndex < currentPageIndex ? lastPageIndex : currentPageIndex
                 let largerIndex : Int = lastPageIndex > currentPageIndex ? lastPageIndex : currentPageIndex
                 
@@ -365,7 +365,7 @@ extension CAPSPageMenu {
                             pagesAddedDictionary[i] = i
                         }
                     }
-                }
+                }*/
                 
                 addPageAtIndex(index)
                 
