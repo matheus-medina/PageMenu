@@ -29,7 +29,7 @@ extension CAPSPageMenu : UIScrollViewDelegate {
                                 
                                 if newScrollDirection != .other {
                                     if lastScrollDirection != newScrollDirection {
-                                        let index : Int = newScrollDirection == .left ? currentPageIndex + 1 : currentPageIndex - 1
+                                        let index : Int = newScrollDirection == .left ? currentPageIndex - 1 : currentPageIndex + 1
                                         
                                         if index >= 0 && index < controllerArray.count {
                                             // Check dictionary if page was already added
